@@ -1,4 +1,5 @@
-FROM node:14.17-alpine
+# ============================== node/build section ===========================
+FROM node:14.17-alpine as build_section
 
 RUN apk update && \
     apk add --update git
@@ -7,8 +8,10 @@ WORKDIR /app
 RUN yarn install && \
     yarn build-demo:prod
 
-# Expose
-EXPOSE 3000
+# ============================== nginx section ================================
+FROM nginx:1.19.8
 
-# Run
-CMD [ "yarn", "start" ]
+COPY --from=build_section /app/dist-demo/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
