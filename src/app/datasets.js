@@ -1,4 +1,4 @@
-const urlPrefix = 'https://localhost/singlecelldata'
+const urlPrefix = 'https://s3.amazonaws.com/vitessce-data/0.0.31/master_release'
 
 /* eslint-disable object-property-newline */
 /* eslint-disable object-curly-newline */
@@ -6,303 +6,10 @@ const urlPrefix = 'https://localhost/singlecelldata'
 // can affect the z-index of plot tooltips due to the
 // resulting ordering of elements in the DOM.
 const configs = {
-  'es_0-patient_0': {
-    name: 'es_0-patient_0',
-    version: '1.0.0',
-    description: 'es_0-patient_0',
-    public: true,
-    datasets: [
-      {
-        uid: 'es_0-patient_0',
-        name: 'es_0-patient_0',
-        files: [
-          {
-            type: 'cells',
-            fileType: 'anndata-cells.zarr',
-            url: `${urlPrefix}/studies/es_0/patient_0.zarr`,
-            options: {
-              mappings: {
-                PCA: {
-                  key: "obsm/X_pca",
-                  dims: [ 0, 1]
-                },
-                UMAP: {
-                  key: "obsm/X_umap",
-                  dims: [ 0, 1]
-                }
-              },
-              factors: [
-                "obs/leiden"
-              ]
-            },
-          },
-          {
-            type: 'cell-sets',
-            fileType: 'anndata-cell-sets.zarr',
-            url: `${urlPrefix}/studies/es_0/patient_0.zarr`,
-            options: [
-              {
-                groupName: "Leiden",
-                setName: "obs/leiden"
-              }
-            ]
-          },
-          {
-            type: 'expression-matrix',
-            fileType: 'anndata-expression-matrix.zarr',
-            url: `${urlPrefix}/studies/es_0/patient_0.zarr`,
-            options: {
-              matrix: "X"
-            }
-          },
-        ],
-      },
-    ],
-    initStrategy: 'auto',
-    coordinationSpace: {
-      embeddingZoom: {
-        UMAP: 0.75,
-      },
-      embeddingType: {
-        UMAP: 'UMAP',
-      },
-    },
-    layout: [
-      {
-        component: 'description',
-        x: 0, y: 0, w: 3, h: 1 },
-      { component: 'cellSets',
-        x: 0, y: 2, w: 3, h: 4 },
-      { component: 'status',
-        x: 0, y: 4, w: 3, h: 1 },
-      { component: 'scatterplot',
-        coordinationScopes: {
-          embeddingType: 'UMAP',
-          embeddingZoom: 'UMAP',
-        },
-        x: 3, y: 0, w: 6, h: 4 },
-      { component: 'genes',
-        x: 9, y: 0, w: 3, h: 4 },
-      { component: 'expressionHistogram',
-        x: 9, y: 4, w: 3, h: 2 },
-      { component: 'cellSetExpression',
-        x: 3, y: 4, w: 6, h: 2 },
-    ],
-  },
-  'pbmc': {
-    name: 'pbmc',
-    version: '1.0.0',
-    description: 'pbmc',
-    public: true,
-    datasets: [
-      {
-        uid: 'pbmc',
-        name: 'pbmc',
-        files: [
-          {
-            type: 'cells',
-            fileType: 'anndata-cells.zarr',
-            url: `${urlPrefix}/pbmc.zarr`,
-            options: {
-              mappings: {
-                PCA: {
-                  key: "obsm/X_pca",
-                  dims: [ 0, 1]
-                },
-                UMAP: {
-                  key: "obsm/X_umap",
-                  dims: [ 0, 1]
-                }
-              },
-              factors: [
-                "obs/leiden"
-              ]
-            },
-          },
-          {
-            type: 'cell-sets',
-            fileType: 'anndata-cell-sets.zarr',
-            url: `${urlPrefix}/pbmc.zarr`,
-            options: [
-              {
-                groupName: "Leiden",
-                setName: "obs/leiden"
-              }
-            ]
-          },
-          {
-            type: 'expression-matrix',
-            fileType: 'anndata-expression-matrix.zarr',
-            url: `${urlPrefix}/pbmc.zarr`,
-            options: {
-              matrix: "X"
-            }
-          },
-        ],
-      },
-    ],
-    initStrategy: 'auto',
-    coordinationSpace: {
-      embeddingZoom: {
-        UMAP: 0.75,
-      },
-      embeddingType: {
-        UMAP: 'UMAP',
-      },
-    },
-    layout: [
-      {
-        component: 'description',
-        x: 0, y: 0, w: 3, h: 1 },
-      { component: 'cellSets',
-        x: 0, y: 2, w: 3, h: 4 },
-      { component: 'status',
-        x: 0, y: 4, w: 3, h: 1 },
-      { component: 'scatterplot',
-        coordinationScopes: {
-          embeddingType: 'UMAP',
-          embeddingZoom: 'UMAP',
-        },
-        x: 3, y: 0, w: 6, h: 4 },
-      { component: 'genes',
-        x: 9, y: 0, w: 3, h: 4 },
-      { component: 'expressionHistogram',
-        x: 9, y: 4, w: 3, h: 2 },
-      { component: 'cellSetExpression',
-        x: 3, y: 4, w: 6, h: 2 },
-    ],
-  },
-  'tabula-muris': {
-    name: 'tabula-muris',
-    version: '1.0.0',
-    description: 'tabula-muris',
-    public: true,
-    datasets: [
-      {
-        uid: 'tabula-muris',
-        name: 'tabula-muris',
-        files: [
-          {
-            type: 'cells',
-            fileType: 'anndata-cells.zarr',
-            url: `${urlPrefix}/tabula-muris.zarr`,
-            options: {
-              mappings: {
-                PCA: {
-                  key: "obsm/X_pca",
-                  dims: [ 0, 1]
-                },
-                TSNE: {
-                  key: "obsm/X_tsne",
-                  dims: [ 0, 1]
-                },
-                UMAP: {
-                  key: "obsm/X_umap",
-                  dims: [ 0, 1]
-                }
-              },
-              factors: [
-                "obs/clusters_leiden",
-                "obs/clusters_louvain",
-                "obs/clusters_from_manuscript",
-                "obs/cell_ontology_class",
-                "obs/free_annotation",
-                "obs/mouse_id",
-                "obs/mouse_sex",
-                "obs/tissue",
-                "obs/subtissue",
-              ]
-            },
-          },
-          {
-            type: 'cell-sets',
-            fileType: 'anndata-cell-sets.zarr',
-            url: `${urlPrefix}/tabula-muris.zarr`,
-            options: [
-              {
-                groupName: "clusters_leiden",
-                setName: "obs/clusters_leiden"
-              },
-              {
-                groupName: "clusters_louvain",
-                setName: "obs/clusters_louvain"
-              },
-              {
-                groupName: "clusters_from_manuscript",
-                setName: "obs/clusters_from_manuscript"
-              },
-              {
-                groupName: "cell_ontology_class",
-                setName: "obs/cell_ontology_class"
-              },
-              {
-                groupName: "free_annotation",
-                setName: "obs/free_annotation"
-              },
-              {
-                groupName: "mouse_id",
-                setName: "obs/mouse_id"
-              },
-              {
-                groupName: "mouse_sex",
-                setName: "obs/mouse_sex"
-              },
-              {
-                groupName: "tissue",
-                setName: "obs/tissue"
-              },
-              {
-                groupName: "subtissue",
-                setName: "obs/subtissue"
-              },
-            ]
-          },
-          {
-            type: 'expression-matrix',
-            fileType: 'anndata-expression-matrix.zarr',
-            url: `${urlPrefix}/tabula-muris.zarr`,
-            options: {
-              matrix: "X"
-            }
-          },
-        ],
-      },
-    ],
-    initStrategy: 'auto',
-    coordinationSpace: {
-      embeddingZoom: {
-        UMAP: 0.75,
-      },
-      embeddingType: {
-        UMAP: 'UMAP',
-      },
-    },
-    layout: [
-      {
-        component: 'description',
-        x: 0, y: 0, w: 3, h: 1 },
-      { component: 'cellSets',
-        x: 0, y: 2, w: 3, h: 4 },
-      { component: 'status',
-        x: 0, y: 4, w: 3, h: 1 },
-      { component: 'scatterplot',
-        coordinationScopes: {
-          embeddingType: 'UMAP',
-          embeddingZoom: 'UMAP',
-        },
-        x: 3, y: 0, w: 6, h: 4 },
-      { component: 'genes',
-        x: 9, y: 0, w: 3, h: 4 },
-      { component: 'expressionHistogram',
-        x: 9, y: 4, w: 3, h: 2 },
-      { component: 'cellSetExpression',
-        x: 3, y: 4, w: 6, h: 2 },
-    ],
-  },
   'linnarsson': {
-    name: 'linnarsson',
+    name: 'Linnarsson',
     version: '1.0.0',
-    description: 'Spatial organization of the somatosensory cortex revealed by cyclic smFISH',
+    description: 'Linnarsson: Spatial organization of the somatosensory cortex revealed by cyclic smFISH',
     public: true,
     datasets: [
       {
@@ -404,63 +111,184 @@ const configs = {
         x: 6, y: 2, w: 3, h: 2 },
     ],
   },
-  'linnarssson-modified': {
-    name: 'linnarssson-modified',
+  'dries-2019': {
+    name: 'Dries',
     version: '1.0.0',
-    description: 'Spatial organization of the somatosensory cortex revealed by cyclic smFISH',
+    description: 'Giotto, a pipeline for integrative analysis and visualization of single-cell spatial transcriptomic data',
     public: true,
     datasets: [
       {
-        uid: 'linnarsson-2018',
-        name: 'Linnarsson 2018',
+        uid: 'dries-2019',
+        name: 'Dries 2019',
         files: [
           {
             type: 'cells',
             fileType: 'cells.json',
-            url: `${urlPrefix}/linnarsson/linnarsson.cells.json`,
+            url: `${urlPrefix}/dries/dries.cells.json`,
           },
           {
             type: 'cell-sets',
             fileType: 'cell-sets.json',
-            url: `${urlPrefix}/linnarsson/linnarsson.cell-sets.json`,
-          },
-          {
-            type: 'expression-matrix',
-            fileType: 'clusters.json',
-            url: `${urlPrefix}/linnarsson/linnarsson.clusters.json`,
+            url: `${urlPrefix}/dries/dries.cell-sets.json`,
           },
         ],
       },
     ],
     initStrategy: 'auto',
     coordinationSpace: {
-      embeddingZoom: {
-        TSNE: 0.75,
-      },
       embeddingType: {
         TSNE: 't-SNE',
+        UMAP: 'UMAP',
+      },
+      embeddingCellSetPolygonsVisible: {
+        A: false,
+      },
+      embeddingCellSetLabelsVisible: {
+        A: true,
+      },
+      embeddingCellSetLabelSize: {
+        A: 16,
+      },
+      embeddingCellRadius: {
+        A: 1,
+      },
+      embeddingZoom: {
+        TSNE: 3,
+        UMAP: 3,
+      },
+      spatialZoom: {
+        A: -4.4,
+      },
+      spatialTargetX: {
+        A: 3800,
+      },
+      spatialTargetY: {
+        A: -900,
       },
     },
     layout: [
-      {
-        component: 'description',
-        x: 0, y: 0, w: 3, h: 1 },
-      { component: 'cellSets',
-        x: 0, y: 2, w: 3, h: 4 },
+      { component: 'description',
+        x: 9, y: 0, w: 3, h: 2 },
       { component: 'status',
-        x: 0, y: 4, w: 3, h: 1 },
+        x: 9, y: 2, w: 3, h: 2 },
+      { component: 'cellSets',
+        x: 9, y: 4, w: 3, h: 4 },
+      { component: 'cellSetSizes',
+        x: 5, y: 4, w: 4, h: 4 },
       { component: 'scatterplot',
         coordinationScopes: {
           embeddingType: 'TSNE',
           embeddingZoom: 'TSNE',
+          embeddingCellSetLabelsVisible: 'A',
+          embeddingCellSetLabelSize: 'A',
+          embeddingCellSetPolygonsVisible: 'A',
+          embeddingCellRadius: 'A',
         },
-        x: 3, y: 0, w: 6, h: 4 },
+        x: 0, y: 2, w: 5, h: 4 },
+      { component: 'spatial',
+        props: {
+          cellRadius: 50,
+        },
+        coordinationScopes: {
+          spatialZoom: 'A',
+          spatialTargetX: 'A',
+          spatialTargetY: 'A',
+        },
+        x: 5, y: 0, w: 4, h: 4 },
+      { component: 'scatterplot',
+        coordinationScopes: {
+          embeddingType: 'UMAP',
+          embeddingZoom: 'UMAP',
+          embeddingCellSetLabelsVisible: 'A',
+          embeddingCellSetLabelSize: 'A',
+          embeddingCellSetPolygonsVisible: 'A',
+          embeddingCellRadius: 'A',
+        },
+        x: 0, y: 0, w: 5, h: 4 },
+    ],
+  },
+  'wang-2019': {
+    name: 'Wang',
+    version: '1.0.0',
+    description: 'Multiplexed imaging of high-density libraries of RNAs with MERFISH and expansion microscopy',
+    public: true,
+    datasets: [
+      {
+        uid: 'wang-2019',
+        name: 'Wang 2019',
+        files: [
+          {
+            type: 'cells',
+            fileType: 'cells.json',
+            url: `${urlPrefix}/wang/wang.cells.json`,
+          },
+          {
+            type: 'molecules',
+            fileType: 'molecules.json',
+            url: `${urlPrefix}/wang/wang.molecules.json`,
+          },
+          {
+            type: 'expression-matrix',
+            fileType: 'genes.json',
+            url: `${urlPrefix}/wang/wang.genes.json`,
+          },
+        ],
+      },
+    ],
+    initStrategy: 'auto',
+    coordinationSpace: {
+      spatialZoom: {
+        A: -1,
+      },
+      spatialLayers: {
+        A: [
+          {
+            type: 'molecules', radius: 2, opacity: 1, visible: true,
+          },
+          {
+            type: 'cells', opacity: 1, radius: 50, visible: true, stroked: false,
+          },
+        ],
+      },
+    },
+    layout: [
+      { component: 'spatial',
+        coordinationScopes: {
+          spatialZoom: 'A',
+          spatialLayers: 'A',
+        },
+        props: {},
+        x: 0, y: 0, w: 10, h: 2 },
       { component: 'genes',
-        x: 9, y: 0, w: 3, h: 4 },
+        x: 10, y: 0, w: 2, h: 4 },
       { component: 'expressionHistogram',
-        x: 9, y: 4, w: 3, h: 2 },
-      { component: 'cellSetExpression',
-        x: 3, y: 4, w: 6, h: 2 },
+        x: 0, y: 2, w: 10, h: 2 },
+    ],
+  },
+  vanderbilt: {
+    name: 'Spraggins',
+    version: '0.1.0',
+    description: 'High Bit Depth (uint16) Multiplex Immunofluorescence Imaging',
+    public: true,
+    layers: [
+      {
+        name: 'raster',
+        type: 'RASTER',
+        fileType: 'raster.json',
+        url: `${urlPrefix}/spraggins/spraggins.raster.json`,
+      },
+    ],
+    staticLayout: [
+      { component: 'spatial',
+        props: {
+          view: {
+            zoom: -6.5,
+            target: [20000, 20000, 0],
+          },
+        },
+        x: 0, y: 0, w: 9, h: 2 },
+      { component: 'layerController',
+        x: 9, y: 0, w: 3, h: 2 },
     ],
   },
 };
