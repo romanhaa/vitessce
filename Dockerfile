@@ -1,6 +1,8 @@
 # ============================== node/build section ===========================
 FROM node:14.17-alpine as build_section
 
+ARG REACT_APP_DATASET_URL=""
+
 RUN apk update && \
     apk add --update git
 COPY ./ /app/

@@ -9,7 +9,7 @@ import '../../node_modules/react-grid-layout/css/styles.css';
 import '../../node_modules/react-resizable/css/styles.css';
 
 import { useDatasets } from '../hooks/useDatasets';
-// import datasetsLocal from './datasets';
+import datasetsLocal from './datasets';
 
 function AwaitResponse(props) {
   const {
@@ -103,8 +103,9 @@ function App(params) {
   const showAll = urlParams.get('show') === 'all';
   const theme = validateTheme(urlParams.get('theme'));
 
-  const datasetsRemote = useDatasets('https://localhost/singlecelldata/datasets.json');
-  const datasets = datasetsRemote;
+  const datasetsRemote = useDatasets(process.env.REACT_APP_DATASET_URL);
+  const sourceData = process.env.REACT_APP_DATASET_URL || 'local';
+  const datasets = sourceData === 'local' ? datasetsLocal : datasetsRemote;
 
   if (datasetId) {
     const config = getConfig(datasets, datasetId);
