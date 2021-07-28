@@ -1,7 +1,5 @@
-import configs from './datasets';
-
-export function listConfigs(showAll) {
-  return Object.entries(configs).filter(
+export function listConfigs(datasets, showAll) {
+  return Object.entries(datasets).filter(
     entry => showAll || entry[1].public,
   ).map(
     ([id, config]) => ({
@@ -13,6 +11,6 @@ export function listConfigs(showAll) {
   );
 }
 
-export function getConfig(id) {
+export function getConfig(configs, id) {
   return configs[id];
 }
