@@ -1,38 +1,32 @@
 import { useState, useEffect } from 'react';
 
 export function useDatasets(url) {
-  const [error, setError] = useState(false);
-  const [result, setResult] = useState([]);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(
     () => {
-      let isCurrent = true;
-      fetch(
-        url,
-        {
-          headers: new Headers([['Accept', 'application/json']]),
-        },
-      )
-        // eslint-disable-next-line no-shadow
-        .then(result => result.json())
-        .then(
-          // eslint-disable-next-line no-shadow
-          (result) => {
-            if (isCurrent) {
-              setResult(result);
-            }
-          },
-          () => {
-            setError(true);
+      const fetchData = async () => {
+        setIsLoading(true);
+        const res = await fetch(
+          url,
+          {
+            headers: new Headers([['Accept', 'application/json']]),
           },
         );
-      return () => { isCurrent = false; };
-    },
-    [url],
+        if (res.ok) {
+          const json = await res.json();
+          setData(json);
+          setIsLoading(false);
+        } else {
+          setData({});
+          setIsLoading(false);
+        }
+      };
+      fetchData();
+    }, [url],
   );
-
-  if (error) { return {}; }
-  return result;
+  return isLoading ? 'loading' : data;
 }
 
 export default useDatasets;

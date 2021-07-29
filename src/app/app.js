@@ -107,6 +107,15 @@ function App(params) {
   const sourceData = process.env.REACT_APP_DATASET_URL || 'local';
   const datasets = sourceData === 'local' ? datasetsLocal : datasetsRemote;
 
+  if (datasets === 'loading') {
+    return (
+      <Warning
+        title="Loading..."
+        theme={theme}
+      />
+    );
+  }
+
   if (datasetId) {
     const config = getConfig(datasets, datasetId);
     return (
